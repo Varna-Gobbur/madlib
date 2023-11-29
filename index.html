@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mad Lib: Colorful Adventure</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="input-container">
+      <h1>Colorful Adventure</h1>
+      <input type="text" placeholder="Enter a color" id="color1"><br>
+      <input type="text" placeholder="Enter another color" id="color2"><br>
+      <input type="text" placeholder="Enter a vivid adjective" id="adjective1"><br>
+      <input type="text" placeholder="Enter a plural noun" id="pluralNoun"><br>
+      <input type="text" placeholder="Enter an exotic place" id="place"><br>
+      <button onclick="generateStory()">Submit</button>
+    </div>
+    <div class="story-container">
+      <h2>Your Colorful Adventure</h2>
+      <p id="textarea"></p>
+    </div>
+  </div>
+  <script src="madlib.js"></script>
+</body>
+</html>
