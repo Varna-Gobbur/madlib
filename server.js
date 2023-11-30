@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 
+// Manually include 'morgan' or use an alternative logger
+// const morgan = require('./path/to/morgan'); // Uncomment if you included 'morgan' manually
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -10,6 +13,12 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname)));
 // Parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// Use an alternative logger if 'morgan' is not available
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
@@ -28,12 +37,12 @@ app.post('/', (req, res) => {
 });
 
 // The server uses port 80 by default unless started with the 'local' argument
-let port = 80;
+let chosenPort = 80;
 if (process.argv[2] === 'local') {
-  port = 8080;
+  chosenPort = 8080;
 }
 
 // Allow the server to accept connections from any IP address
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Hey ! Server is working on port ${port}`);
+app.listen(chosenPort, '0.0.0.0', () => {
+  console.log(`Hey! Server is working on port ${chosenPort}`);
 });
